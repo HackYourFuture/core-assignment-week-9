@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nobel Prize Explorer</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>🏆 Nobel Prize Explorer</h1>
+        <p class="subtitle">Explore Nobel Prize winners through history</p>
+      </header>
+
+      <div class="filters">
+        <div class="filter-group">
+          <label for="category-select" class="filter-label">Category:</label>
+          <select id="category-select" class="filter-select">
+            <option value="all">All</option>
+            <option value="phy">Physics</option>
+            <option value="che">Chemistry</option>
+            <option value="med">Medicine</option>
+            <option value="lit">Literature</option>
+            <option value="pea">Peace</option>
+            <option value="eco">Economic Sciences</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label for="year-select" class="filter-label">Year:</label>
+          <select id="year-select" class="filter-select">
+            <!-- Years will be populated by JavaScript -->
+          </select>
+        </div>
+      </div>
+
+      <div class="loading" id="loading">
+        <div class="spinner" aria-label="Loading"></div>
+      </div>
+      <div class="error-message" id="error-message"></div>
+
+      <div id="prizes-info" class="prizes-info">
+        <span id="prizes-count">0 prizes found</span>
+      </div>
+
+      <div id="prizes-container"></div>
+
+      <div id="pagination" class="pagination">
+        <button
+          type="button"
+          id="first-btn"
+          class="btn btn-pagination"
+          disabled
+        >
+          ⇤ First
+        </button>
+        <button type="button" id="prev-btn" class="btn btn-pagination" disabled>
+          ← Previous
+        </button>
+        <span id="page-info" class="page-info">Page 1 of 1</span>
+        <button type="button" id="next-btn" class="btn btn-pagination" disabled>
+          Next →
+        </button>
+        <button type="button" id="last-btn" class="btn btn-pagination" disabled>
+          Last ⇥
+        </button>
+      </div>
+    </div>
+
+    <script src="index.js" type="module"></script>
+  </body>
+</html>
