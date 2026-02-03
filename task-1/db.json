@@ -1,0 +1,103 @@
+{
+  "users": [
+    {
+      "id": "a1b2",
+      "name": "Alice Johnson",
+      "email": "alice.johnson@example.com",
+      "password": "$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcg7b3XeKeUxWdeS86E36P4/TVG2",
+      "role": "admin",
+      "active": true,
+      "department": "Engineering"
+    },
+    {
+      "id": "c3d4",
+      "name": "Bob Smith",
+      "email": "bob.smith@example.com",
+      "password": "$2b$10$V8qo8uLOickgx2ZMRZoMyeIjZAgcg7b3XeKeUxWdeS86E36P4/TVG2",
+      "role": "user",
+      "active": true,
+      "department": "Marketing"
+    },
+    {
+      "id": "e5f6",
+      "name": "Carol Williams",
+      "email": "carol.williams@example.com",
+      "password": "$2b$10$X7qo8uLOickgx2ZMRZoMyeIjZAgcg7b3XeKeUxWdeS86E36P4/TVG2",
+      "role": "moderator",
+      "active": true,
+      "department": "Content"
+    },
+    {
+      "id": "a7b8",
+      "name": "David Brown",
+      "email": "david.brown@example.com",
+      "password": "$2b$10$Y6qo8uLOickgx2ZMRZoMyeIjZAgcg7b3XeKeUxWdeS86E36P4/TVG2",
+      "role": "user",
+      "active": false,
+      "department": "Sales"
+    },
+    {
+      "id": "c9d0",
+      "name": "Emma Davis",
+      "email": "emma.davis@example.com",
+      "password": "$2b$10$Z5qo8uLOickgx2ZMRZoMyeIjZAgcg7b3XeKeUxWdeS86E36P4/TVG2",
+      "role": "admin",
+      "active": true,
+      "department": "Engineering"
+    },
+    {
+      "id": "e1f2",
+      "name": "Frank Miller",
+      "email": "frank.miller@example.com",
+      "password": "$2b$10$A4qo8uLOickgx2ZMRZoMyeIjZAgcg7b3XeKeUxWdeS86E36P4/TVG2",
+      "role": "user",
+      "active": true,
+      "department": "HR"
+    },
+    {
+      "id": "a3b4",
+      "name": "Grace Lee",
+      "email": "grace.lee@example.com",
+      "password": "$2b$10$B3qo8uLOickgx2ZMRZoMyeIjZAgcg7b3XeKeUxWdeS86E36P4/TVG2",
+      "role": "moderator",
+      "active": true,
+      "department": "Content"
+    },
+    {
+      "id": "c5d6",
+      "name": "Henry Taylor",
+      "email": "henry.taylor@example.com",
+      "password": "$2b$10$C2qo8uLOickgx2ZMRZoMyeIjZAgcg7b3XeKeUxWdeS86E36P4/TVG2",
+      "role": "user",
+      "active": false,
+      "department": "Finance"
+    },
+    {
+      "id": "e7f8",
+      "name": "Iris Anderson",
+      "email": "iris.anderson@example.com",
+      "password": "$2b$10$D1qo8uLOickgx2ZMRZoMyeIjZAgcg7b3XeKeUxWdeS86E36P4/TVG2",
+      "role": "user",
+      "active": true,
+      "department": "Marketing"
+    },
+    {
+      "id": "a9b0",
+      "name": "Jack Wilson",
+      "email": "jack.wilson@example.com",
+      "password": "$2b$10$E0qo8uLOickgx2ZMRZoMyeIjZAgcg7b3XeKeUxWdeS86E36P4/TVG2",
+      "role": "moderator",
+      "active": true,
+      "department": "Engineering"
+    },
+    {
+      "id": "6f04",
+      "name": "John Doe",
+      "email": "john.doe@example.com",
+      "password": "12345678",
+      "role": "user",
+      "active": true,
+      "department": "Engineering"
+    }
+  ]
+}

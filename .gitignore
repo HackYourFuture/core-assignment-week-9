@@ -7,7 +7,7 @@ Thumbs.db
 .hyf/score.json
 
 # Editor and IDE settings
-# Commit .vscode with settings to disable GitHub Copilot
+# Commit .vscode with settings to disable GitHub Copilot inline suggestions
 # .vscode/
 .idea/
 *.iml
@@ -158,3 +158,6 @@ vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 
 task-2/services-solution.js
+
+solutions/
+.hyf/temp

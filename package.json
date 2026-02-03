@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node task-1/server/server.js",
     "test": "vitest"
   },
   "keywords": [],
@@ -12,5 +13,11 @@
   "type": "module",
   "devDependencies": {
     "vitest": "^4.0.17"
+  },
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "express": "^5.2.1",
+    "json-server": "^1.0.0-beta.5",
+    "morgan": "^1.10.1"
   }
 }
