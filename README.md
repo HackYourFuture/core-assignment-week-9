@@ -10,7 +10,7 @@ In this task you will practice reading API documentation and using **curl**. The
 
 Before you start, open a terminal in the repository root and start the server with `npm start`. Keep it running while you work.
 
-Create your scripts inside the `task-1` folder and run each script with `bash` after you finish it. If a command fails, compare your request to the examples in the [GUIDE](task-1/GUIDE.md).
+Create your scripts inside the `task-1` folder and run each script with `bash` after you finish it.
 
 1. Create a `post.sh` bash script. It must send a `POST` request with **curl** to create a new user. Use these values in the JSON body:
 
