@@ -1,6 +1,6 @@
 # Users API — Usage Guide
 
-This guide describes the users API backed by the local users.json file. It explains the endpoints, required data, and expected behavior so you can build your own requests.
+This guide describes the users API backed by the local users.json file. It explains the endpoints, required data, and expected behavior so you can build your own requests
 
 Base URL: <http://localhost:3000>
 
@@ -28,7 +28,6 @@ Response: an array of users (without `password`).
 - Method: POST
 - Path: /users
 - Body: JSON with the following fields:
-
   - `name` (string)
   - `email` (string)
   - `password` (string, required)
