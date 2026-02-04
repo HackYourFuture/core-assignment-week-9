@@ -14,11 +14,13 @@ export function fetchData(url, onSuccess, onError) {
     })
     .then((data) => {
       if (onSuccess) {
+        console.log(data);
         onSuccess(data);
       }
     })
     .catch((error) => {
       if (onError) {
+        console.log('Error fetching data:', error);
         onError(error);
       }
     });
