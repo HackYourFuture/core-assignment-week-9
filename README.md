@@ -24,7 +24,7 @@ Create your scripts inside the `task-1` folder and run each script with `bash` a
 
    Run the script. Record the `id` in the response. You will use it in the next steps.
 
-2. The email address from the previous step mistakenly included an extra dot between first and last name. We will correct it here. Create a `patch.sh` bash script. It must send a **curl** `PATCH` request to update the email address for the user you just created. Fix the email by removing the extra dot, changing it to `johndoe@example.com`. Note that in general, a `PATCH` request should include only the field you are updating. In our case this is the `email` field only.
+2. The email address from the previous step mistakenly included an extra dot between first and last name. We will correct it here. Create a `patch.sh` bash script. It must send a **curl** `PATCH` request to update the email address for the user you just created. Fix the email by removing the extra dot, changing it to `johndoe@example.com`. Note that in general, a `PATCH` request should include only the fields you are updating. In our case this is the `email` field only.
 
 3. Create a `get.sh` script. It must send a **curl** `GET` request to fetch the user by `id`. Verify the response contains the updated email.
 
