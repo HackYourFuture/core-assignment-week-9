@@ -7,8 +7,7 @@
     "start": "node task-1/server/server.js",
     "test": "vitest --run",
     "test:task-1": "vitest --run tests/task-1.test.js",
-    "test:task-2": "vitest --run tests/task-2.test.js",
-    "test:solution": "SOLUTION_TESTS=1 vitest"
+    "test:task-2": "vitest --run tests/task-2.test.js"
   },
   "keywords": [],
   "author": "",
