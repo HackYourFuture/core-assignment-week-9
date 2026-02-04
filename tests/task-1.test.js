@@ -1,4 +1,5 @@
 import { exec } from 'child_process';
+import e from 'express';
 import { existsSync, readFileSync, writeFileSync } from 'fs';
 import path from 'path';
 import { promisify } from 'util';
@@ -36,6 +37,9 @@ describe('curl scripts', () => {
       expect(user).toHaveProperty('id');
       expect(user).toHaveProperty('name', 'John Doe');
       expect(user).toHaveProperty('email', 'john.doe@example.com');
+      expect(user).toHaveProperty('role', 'user');
+      expect(user).toHaveProperty('active', true);
+      expect(user).toHaveProperty('department', 'Engineering');
     } catch (error) {
       throw new Error(`Failed to parse JSON: ${error.message}`);
     }
