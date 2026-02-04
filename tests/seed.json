@@ -1,102 +1,113 @@
 {
   "users": [
     {
-      "id": "a1b2",
+      "id": 1,
       "name": "Alice Johnson",
       "email": "alice.johnson@example.com",
       "password": "$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcg7b3XeKeUxWdeS86E36P4/TVG2",
       "role": "admin",
       "active": true,
+      "createdAt": "2024-01-15T08:30:00Z",
+      "lastLogin": "2026-02-03T10:45:00Z",
       "department": "Engineering"
     },
     {
-      "id": "c3d4",
+      "id": 2,
       "name": "Bob Smith",
       "email": "bob.smith@example.com",
       "password": "$2b$10$V8qo8uLOickgx2ZMRZoMyeIjZAgcg7b3XeKeUxWdeS86E36P4/TVG2",
       "role": "user",
       "active": true,
+      "createdAt": "2024-02-20T09:15:00Z",
+      "lastLogin": "2026-02-02T14:22:00Z",
       "department": "Marketing"
     },
     {
-      "id": "e5f6",
+      "id": 3,
       "name": "Carol Williams",
       "email": "carol.williams@example.com",
       "password": "$2b$10$X7qo8uLOickgx2ZMRZoMyeIjZAgcg7b3XeKeUxWdeS86E36P4/TVG2",
       "role": "moderator",
       "active": true,
+      "createdAt": "2024-03-10T11:00:00Z",
+      "lastLogin": "2026-02-01T09:30:00Z",
       "department": "Content"
     },
     {
-      "id": "a7b8",
+      "id": 4,
       "name": "David Brown",
       "email": "david.brown@example.com",
       "password": "$2b$10$Y6qo8uLOickgx2ZMRZoMyeIjZAgcg7b3XeKeUxWdeS86E36P4/TVG2",
       "role": "user",
       "active": false,
+      "createdAt": "2024-04-05T13:45:00Z",
+      "lastLogin": "2025-11-28T16:20:00Z",
       "department": "Sales"
     },
     {
-      "id": "c9d0",
+      "id": 5,
       "name": "Emma Davis",
       "email": "emma.davis@example.com",
       "password": "$2b$10$Z5qo8uLOickgx2ZMRZoMyeIjZAgcg7b3XeKeUxWdeS86E36P4/TVG2",
       "role": "admin",
       "active": true,
+      "createdAt": "2024-01-08T07:20:00Z",
+      "lastLogin": "2026-02-03T08:15:00Z",
       "department": "Engineering"
     },
     {
-      "id": "e1f2",
+      "id": 6,
       "name": "Frank Miller",
       "email": "frank.miller@example.com",
       "password": "$2b$10$A4qo8uLOickgx2ZMRZoMyeIjZAgcg7b3XeKeUxWdeS86E36P4/TVG2",
       "role": "user",
       "active": true,
+      "createdAt": "2024-05-12T10:30:00Z",
+      "lastLogin": "2026-01-31T12:00:00Z",
       "department": "HR"
     },
     {
-      "id": "a3b4",
+      "id": 7,
       "name": "Grace Lee",
       "email": "grace.lee@example.com",
       "password": "$2b$10$B3qo8uLOickgx2ZMRZoMyeIjZAgcg7b3XeKeUxWdeS86E36P4/TVG2",
       "role": "moderator",
       "active": true,
+      "createdAt": "2024-06-18T14:15:00Z",
+      "lastLogin": "2026-02-02T15:45:00Z",
       "department": "Content"
     },
     {
-      "id": "c5d6",
+      "id": 8,
       "name": "Henry Taylor",
       "email": "henry.taylor@example.com",
       "password": "$2b$10$C2qo8uLOickgx2ZMRZoMyeIjZAgcg7b3XeKeUxWdeS86E36P4/TVG2",
       "role": "user",
       "active": false,
+      "createdAt": "2024-07-22T16:00:00Z",
+      "lastLogin": "2025-12-15T11:30:00Z",
       "department": "Finance"
     },
     {
-      "id": "e7f8",
+      "id": 9,
       "name": "Iris Anderson",
       "email": "iris.anderson@example.com",
       "password": "$2b$10$D1qo8uLOickgx2ZMRZoMyeIjZAgcg7b3XeKeUxWdeS86E36P4/TVG2",
       "role": "user",
       "active": true,
+      "createdAt": "2024-08-05T09:45:00Z",
+      "lastLogin": "2026-02-03T11:20:00Z",
       "department": "Marketing"
     },
     {
-      "id": "a9b0",
+      "id": 10,
       "name": "Jack Wilson",
       "email": "jack.wilson@example.com",
       "password": "$2b$10$E0qo8uLOickgx2ZMRZoMyeIjZAgcg7b3XeKeUxWdeS86E36P4/TVG2",
       "role": "moderator",
       "active": true,
-      "department": "Engineering"
-    },
-    {
-      "id": "6f04",
-      "name": "John Doe",
-      "email": "john.doe@example.com",
-      "password": "12345678",
-      "role": "user",
-      "active": true,
+      "createdAt": "2024-09-14T12:30:00Z",
+      "lastLogin": "2026-02-03T13:00:00Z",
       "department": "Engineering"
     }
   ]

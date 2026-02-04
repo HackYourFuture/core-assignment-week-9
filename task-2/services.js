@@ -15,8 +15,7 @@ const API_BASE_URL = 'https://api.nobelprize.org/2.1';
  * @param {Function} onError - Callback for fetch errors
  */
 export function fetchNobelPrizes(filters = {}, onSuccess, onError) {
-  // TODO: Implement the function to fetch Nobel Prizes from the API
-  let url = API_BASE_URL;
+  let url = ''; // TODO Construct the full URL with query parameters;
 
   fetchData(url, onSuccess, onError);
 }
