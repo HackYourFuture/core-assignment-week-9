@@ -13,4 +13,4 @@
 PASSING_SCORE=50 /usr/bin/env node tester.js
 
 # Kill the server
-kill -9 $(lsof -t -i:3000) >/dev/null 2>&1
+kill -9 "$(lsof -t -i:3000)" >/dev/null 2>&1
