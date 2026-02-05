@@ -1,6 +1,6 @@
 # Users API — Usage Guide
 
-This guide describes the users API backed by the local users.json file. It explains the endpoints, required data, and expected behavior so you can build your own requests.
+This guide describes the users API backed by the local users.json file. It explains the endpoints, required data, and expected behavior so you can build your own requests
 
 Base URL: <http://localhost:3000>
 
