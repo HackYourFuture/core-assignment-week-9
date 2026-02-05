@@ -1,13 +1,16 @@
 #!/usr/bin/env bash
-set -euo pipefail
 
-# Run your test scripts here.
-# Auto grade tool will execute this file within the .hyf working directory.
-# The result should be stored in score.json file with the format shown below.
-cat << EOF > score.json
 {
-  "score": 0,
-  "pass": true,
-  "passingScore": 0
-}
-EOF
+  pushd ..
+  /usr/bin/env npm install
+  # Start the server
+  /usr/bin/env npm start &
+  sleep 3
+  npx vitest run --reporter=json --outputFile=.hyf/report.json
+  popd || exit
+} >/dev/null
+
+PASSING_SCORE=50 /usr/bin/env node tester.js
+
+# Kill the server
+kill -9 "$(lsof -t -i:3000)" >/dev/null 2>&1
