@@ -10,4 +10,4 @@ This assignment focuses on working with web APIs and HTTP requests through two p
 
 **Task 2** requires completing a Nobel Prizes web application by implementing URL construction logic in `services.js` to fetch data from the NobelPrize API with filtering, pagination, and sorting capabilities.
 
-For detailed instructions, see the full assignment description at the provided link above.
+For detailed instructions, see the full assignment description at the link provided above.
