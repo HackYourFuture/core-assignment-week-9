@@ -4,6 +4,7 @@ import fs from 'fs';
 import morgan from 'morgan';
 import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
+import chalk from 'chalk';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -14,6 +15,9 @@ const usersFilePath = join(__dirname, 'users.json');
 
 app.use(morgan('dev'));
 app.use(express.json());
+
+// Set global JSON indentation to 2 spaces
+app.set('json spaces', 2);
 
 // Helper function to read users from the JSON file
 const readUsers = () => {
@@ -130,5 +134,6 @@ app.delete('/users/:id', (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+  console.log(chalk.green(`Server is running on http://localhost:${PORT}`));
+  console.log(chalk.yellow('Press Ctrl+C to stop the server'));
 });
