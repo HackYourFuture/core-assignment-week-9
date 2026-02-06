@@ -1,5 +1,4 @@
 import { exec } from 'child_process';
-import e from 'express';
 import { existsSync, readFileSync, writeFileSync } from 'fs';
 import path from 'path';
 import { promisify } from 'util';
@@ -7,14 +6,7 @@ import { beforeAll, describe, expect, test } from 'vitest';
 
 const execPromise = promisify(exec);
 
-let scriptDir;
-
-if (process.env.SOLUTION_TESTS) {
-  scriptDir = path.join(__dirname, '../solutions/task-1');
-} else {
-  scriptDir = path.join(__dirname, '../task-1');
-}
-
+const scriptDir = path.join(__dirname, '../task-1');
 const serverDir = path.join(__dirname, '../task-1/server');
 
 beforeAll(() => {
