@@ -1,110 +1,62 @@
-# Users API — Usage Guide
+# Assignment Instructions
 
-This guide describes the users API backed by the local users.json file. It explains the endpoints, required data, and expected behavior so you can build your own requests.
+## Task 1 — curl commands
 
-## Getting started
+In this task you will practice reading API documentation and using **curl**. The API reference you need is in the [README_API](README_API.md) file of task-1 in the assignment repository. Read it carefully and construct your own **curl** requests from the endpoint details.
 
-1. Install dependencies (run this once from the repository root):
+Before you start, open a terminal in the repository root and start the server with `npm start`. Keep it running while you work.
 
-       npm install
+Create your scripts inside the `task-1` folder and run each script with `bash` after you finish it.
 
-2. Start the server:
+1. Create a `post.sh` bash script. It must send a `POST` request with **curl** to create a new user. Use these values in the JSON body:
 
-       npm start
+   | Field               | Value                |
+   | ------------------- | -------------------- |
+   | name (string)       | John Doe             |
+   | email (string)      | john.doe@example.com |
+   | password (string)   | secret123            |
+   | role (string)       | user                 |
+   | active (boolean)    | true                 |
+   | department (string) | Engineering          |
 
-The server runs at <http://localhost:3000>. Keep it running in a separate terminal while you work on your scripts.
+   Run the script. Record the `id` from the response. You will need it in the next steps.
 
-## Making requests
+2. The email address from the previous step mistakenly included an extra dot between first and last name. We will correct it here. Create a `patch.sh` bash script. It must send a **curl** `PATCH` request to update the email address for the user you just created. Fix the email by removing the extra dot, changing it to `johndoe@example.com`. Note that in general, a `PATCH` request should include only the fields you are updating. In our case this is the `email` field only.
+3. Create a `get.sh` script. It must send a **curl** `GET` request to fetch the user by `id`. Verify the response contains the updated email.
+4. Create a `delete.sh` script. It must send a **curl** `DELETE` request for the same `id` to remove the user.
+5. Re-run the `get.sh` script. The response should now be "User not found".
 
-Base URL: <http://localhost:3000>
+When you are satisfied with the results of your bash scripts, you can verify that Task 1 will successfully pass all tests performed by the auto-grading facility when you submit your pull request. To do so, open a second terminal window and type the command:
 
-All requests that send a body must use JSON and include the header:
+```bash
+npm run test:task-1
+```
 
-- Content-Type: `application/json; charset=UTF-8`
+If all is well you see output similar to this:
 
-> [!NOTE]
-> In the PATH specifications below, `:id` indicates a path parameter that should be replaced with the actual user ID number.
+```
+> core-assignment-week-9@1.0.0 test:task-1
+> vitest --run tests/task-1.test.js
 
-## Get a single user
+ RUN  v4.0.18 /Volumes/Crucial2TB/xdev/hackyourfuture/core-assignment-week-9
 
-- Method: `GET`
-- Path: `/users/:id`
+ ✓ tests/task-1.test.js (9 tests) 149ms
+   ✓ curl scripts (9)
+     ✓ post.sh: Script exists 0ms
+     ✓ post.sh: Create user John Doe 74ms
+     ✓ patch.sh: Script exists 0ms
+     ✓ patch.sh: Correct the email address 20ms
+     ✓ get.sh: Script exists 0ms
+     ✓ get.sh: Retrieve user John Doe details 18ms
+     ✓ delete.sh: Script exists 0ms
+     ✓ delete.sh: Delete user John Doe 19ms
+     ✓ get.sh: Verify user John Doe has been deleted 17ms
 
-Response: a single user object (without `password`) or the text `User not found`.
+ Test Files  1 passed (1)
+      Tests  9 passed (9)
+   Start at  16:35:08
+   Duration  233ms (transform 9ms, setup 0ms, import 14ms, tests 149ms, environment 0ms)
 
-## List all users
+```
 
-- Method: `GET`
-- Path: `/users`
-
-Response: an array of users (without `password`).
-
-## Create a user
-
-- Method: `POST`
-- Path: `/users`
-- Body: JSON with the following fields:
-  - `name` (string)
-  - `email` (string)
-  - `password` (string, required)
-  - `role` (string)
-  - `active` (boolean)
-  - `department` (string)
-
-Example body:
-
-    {
-      "name": "Jane Smith",
-      "email": "jane.smith@example.com",
-      "password": "secret123",
-      "role": "user",
-      "active": true,
-      "department": "Engineering"
-    }
-
-Response: the created user (without `password`) and a generated `id`.
-
-## Update a user (replace all fields)
-
-- Method: `PUT`
-- Path: `/users/:id`
-- Body: JSON with the full user object (all fields you want to keep must be included).
-
-Example body:
-
-    {
-      "name": "Alice Johnson",
-      "email": "alice.johnson@example.com",
-      "password": "new-secret",
-      "role": "admin",
-      "active": true,
-      "department": "Engineering"
-    }
-
-Response: the updated user (without `password`).
-
-## Patch a user (partial update)
-
-- Method: `PATCH`
-- Path: `/users/:id`
-- Body: JSON with only the fields you want to change.
-
-Example body:
-
-    {
-      "email": "alice.updated@example.com"
-    }
-
-Response: the updated user (without `password`).
-
-## Delete a user
-
-- Method: `DELETE`
-- Path: `/users/:id`
-
-Response: the text "User deleted successfully" on success.
-
-## Notes
-
-- Passwords are never returned in API responses.
-- The server hashes the `password` you send in POST, PUT, or PATCH requests.
+When you have completed all steps, stop the server with `Ctrl-C` in the terminal window where you started the server.
