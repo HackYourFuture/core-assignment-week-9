@@ -1,4 +1,4 @@
-import { fetchNobelPrizes } from './services-solution.js';
+import { fetchNobelPrizes } from './services.js';
 
 export default class UI {
   constructor() {

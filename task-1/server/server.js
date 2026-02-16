@@ -54,7 +54,7 @@ app.post('/users', async (req, res) => {
   const hashedPassword = await bcrypt.hash(password, 10);
   const users = readUsers();
   const newUser = {
-    id: users.length + 1,
+    id: users.length > 0 ? Math.max(...users.map((u) => u.id)) + 1 : 1,
     name,
     email,
     password: hashedPassword,
@@ -98,7 +98,7 @@ app.patch('/users/:id', async (req, res) => {
   const users = readUsers();
   const userIndex = users.findIndex((u) => u.id === parseInt(req.params.id));
   if (userIndex !== -1) {
-    const updates = { ...req.body };
+    const { id, createdAt, ...updates } = req.body;
     // If password is provided, hash it
     if (updates.password) {
       updates.password = await bcrypt.hash(updates.password, 10);

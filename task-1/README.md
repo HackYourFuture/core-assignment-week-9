@@ -88,7 +88,7 @@ Response: the updated user (without `password`).
 - Method: `DELETE`
 - Path: `/users/:id`
 
-Response: no content on success.
+Response: the text "User deleted successfully" on success.
 
 ## Notes
 
