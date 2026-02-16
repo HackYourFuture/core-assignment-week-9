@@ -2,6 +2,12 @@
 
 The week 9 assignment for the HackYourFuture Core program can be found at the following link: <https://hub.hackyourfuture.nl/core-program-week-9-assignment>
 
+## Getting started
+
+Install dependencies (run this once from the repository root):
+
+    npm install
+
 ## Implementation Instructions
 
 This assignment focuses on working with web APIs and HTTP requests through two practical tasks.

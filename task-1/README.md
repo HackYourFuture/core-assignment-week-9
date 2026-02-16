@@ -2,6 +2,20 @@
 
 This guide describes the users API backed by the local users.json file. It explains the endpoints, required data, and expected behavior so you can build your own requests.
 
+## Getting started
+
+1. Install dependencies (run this once from the repository root):
+
+       npm install
+
+2. Start the server:
+
+       npm start
+
+The server runs at <http://localhost:3000>. Keep it running in a separate terminal while you work on your scripts.
+
+## Making requests
+
 Base URL: <http://localhost:3000>
 
 All requests that send a body must use JSON and include the header:
