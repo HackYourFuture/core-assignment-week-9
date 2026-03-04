@@ -2,7 +2,7 @@
 
 ## Task 2 — Nobel Prizes Web App
 
-For this task you will be using a pre-made Web application. Your job will be to complete the file `services.js` in the `task-2` folder that is responsible for fetching the data required for the application. The application uses the [NobelPrize API](https://www.nobelprize.org/about/developer-zone-2/) to display a list of awarded Nobel Prizes, optionally filtered by Nobel Prize **category** and award **year**.
+For this task you will be using a pre-made Web application. Your job will be to complete the file `services.js` in the `task-2` folder that is responsible for fetching the data required for the application. The application uses the [NobelPrize API](https://www.nobelprize.org/about/developer-zone-2/) to display a list of awarded Nobel Prizes, optionally filtered by Nobel Prize **category** and award **year**. The exact steps are listed in the [Requirements](#requirements) section below — read through the background information first so you understand how everything fits together.
 
 Here is what it looks like:
 
@@ -59,9 +59,18 @@ For this exercise, you can consider the `fetchData()` function as a _black box_,
 | offset (number)             | An offset that indicates from which location in the list the current page starts. This offset is managed by the pagination buttons. |
 | limit (number)              | The number of items per page. This is a fixed number, set by the Web UI.                                                            |
 
-There is an additional query parameter that is not passed in the `filters` object, but that you nevertheless need to include in the url. This is the `sort` property, which should be set to `desc` (sort descending by year).
+### Requirements
 
-To summarize, your task is to complete the `url` that is passed to `fetchData()` from the `filters` object passed as the first parameter to the `fetchNobelPrizes()` function. In order to do so you must read the Open API documentation for the `GET /nobelPrizes` endpoint, perhaps try it out online and then implement it in `services.js`.
+Complete the `fetchNobelPrizes()` function in `task-2/services.js` by constructing the full URL that will be passed to `fetchData()`. The URL must:
+
+1. Use `https://api.nobelprize.org/2.1/nobelPrizes` as the base URL.
+2. Include the `offset` query parameter, using the value from `filters.offset`.
+3. Include the `limit` query parameter, using the value from `filters.limit`.
+4. Include the `sort` query parameter, set to `desc` (this is **not** part of the `filters` object — you must add it yourself).
+5. Include the `nobelPrizeYear` query parameter using the value from `filters.year`, but **only** when `filters.year` is not `"all"`.
+6. Include the `nobelPrizeCategory` query parameter using the value from `filters.category`, but **only** when `filters.category` is not `"all"`.
+
+> Tip: Use the [URLSearchParams](https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams) Web API to build the query string. It handles encoding and formatting for you.
 
 ### Running the application
 
