@@ -70,8 +70,9 @@ export default class UI {
    * Populate year select dropdown with years from 1901 to current year
    */
   populateYearSelect() {
-    const currentYear = new Date().getFullYear();
-    const startYear = 1901;
+    
+   const currentYear = new Date().getFullYear();
+    const startYear = 1901; 
 
     // Add 'All' option first
     const allOption = document.createElement('option');
@@ -108,7 +109,8 @@ export default class UI {
 
     // Get filter values
     const category = this.dom.categorySelect.value;
-    const year = this.dom.yearSelect.value;
+    const year = this.dom.yearSelect.value; 
+
 
     // Update state
     this.state.filters.category = category;
