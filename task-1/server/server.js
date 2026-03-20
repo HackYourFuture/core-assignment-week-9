@@ -38,8 +38,13 @@ app.get('/users', (req, res) => {
 
 // GET a user by ID
 app.get('/users/:id', (req, res) => {
+  const id = parseInt(req.params.id);
+  if (isNaN(id) || id < 1) {
+    return res.status(400).send('Invalid user ID');
+  }
+
   const users = readUsers();
-  const user = users.find((u) => u.id === parseInt(req.params.id));
+  const user = users.find((u) => u.id === id);
   if (user) {
     const { password, ...userWithoutPassword } = user; // Exclude password
     res.json(userWithoutPassword);
@@ -51,6 +56,15 @@ app.get('/users/:id', (req, res) => {
 // CREATE a new user
 app.post('/users', async (req, res) => {
   const { name, email, password, role, department } = req.body;
+
+  const missing = [];
+  if (!name || typeof name !== 'string') missing.push('name');
+  if (!email || typeof email !== 'string') missing.push('email');
+  if (!password || typeof password !== 'string') missing.push('password');
+  if (missing.length > 0) {
+    return res.status(400).send(`Missing required fields: ${missing.join(', ')}`);
+  }
+
   const hashedPassword = await bcrypt.hash(password, 10);
   const users = readUsers();
   const newUser = {
@@ -72,8 +86,21 @@ app.post('/users', async (req, res) => {
 
 // UPDATE a user by ID
 app.put('/users/:id', async (req, res) => {
+  const id = parseInt(req.params.id);
+  if (isNaN(id) || id < 1) {
+    return res.status(400).send('Invalid user ID');
+  }
+
+  const { name, email } = req.body;
+  const missing = [];
+  if (!name || typeof name !== 'string') missing.push('name');
+  if (!email || typeof email !== 'string') missing.push('email');
+  if (missing.length > 0) {
+    return res.status(400).send(`Missing required fields: ${missing.join(', ')}`);
+  }
+
   const users = readUsers();
-  const userIndex = users.findIndex((u) => u.id === parseInt(req.params.id));
+  const userIndex = users.findIndex((u) => u.id === id);
   if (userIndex !== -1) {
     const { name, email, password, role, department } = req.body;
     const updatedUser = {
@@ -95,17 +122,26 @@ app.put('/users/:id', async (req, res) => {
 
 // PATCH a user by ID (partial update)
 app.patch('/users/:id', async (req, res) => {
+  const id = parseInt(req.params.id);
+  if (isNaN(id) || id < 1) {
+    return res.status(400).send('Invalid user ID');
+  }
+
+  const { id: _id, createdAt: _createdAt, ...updateFields } = req.body;
+  if (Object.keys(updateFields).length === 0) {
+    return res.status(400).send('No valid update fields provided');
+  }
+
   const users = readUsers();
-  const userIndex = users.findIndex((u) => u.id === parseInt(req.params.id));
+  const userIndex = users.findIndex((u) => u.id === id);
   if (userIndex !== -1) {
-    const { id, createdAt, ...updates } = req.body;
     // If password is provided, hash it
-    if (updates.password) {
-      updates.password = await bcrypt.hash(updates.password, 10);
+    if (updateFields.password) {
+      updateFields.password = await bcrypt.hash(updateFields.password, 10);
     }
     const updatedUser = {
       ...users[userIndex],
-      ...updates,
+      ...updateFields,
     };
     users[userIndex] = updatedUser;
     writeUsers(users);
@@ -118,8 +154,13 @@ app.patch('/users/:id', async (req, res) => {
 
 // DELETE a user by ID
 app.delete('/users/:id', (req, res) => {
+  const id = parseInt(req.params.id);
+  if (isNaN(id) || id < 1) {
+    return res.status(400).send('Invalid user ID');
+  }
+
   const users = readUsers();
-  const userIndex = users.findIndex((u) => u.id === parseInt(req.params.id));
+  const userIndex = users.findIndex((u) => u.id === id);
   if (userIndex !== -1) {
     users.splice(userIndex, 1);
     writeUsers(users);
