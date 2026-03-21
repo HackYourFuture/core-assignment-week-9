@@ -1,4 +1,4 @@
-import { fetchNobelPrizes } from './services.js';
+import { fetchNobelPrizes } from "./services.js";
 
 export default class UI {
   constructor() {
@@ -9,7 +9,7 @@ export default class UI {
       itemsPerPage: 10,
       filters: {
         year: null,
-        category: 'all',
+        category: "all",
       },
     };
     this.dom = this.getElementsWithIds(document);
@@ -20,27 +20,27 @@ export default class UI {
     this.populateYearSelect();
 
     // Set up event listeners
-    this.dom.categorySelect.addEventListener('change', () => {
+    this.dom.categorySelect.addEventListener("change", () => {
       this.loadPrizes();
     });
 
-    this.dom.yearSelect.addEventListener('change', () => {
+    this.dom.yearSelect.addEventListener("change", () => {
       this.loadPrizes();
     });
 
-    this.dom.prevBtn.addEventListener('click', () => {
+    this.dom.prevBtn.addEventListener("click", () => {
       this.previousPage();
     });
 
-    this.dom.nextBtn.addEventListener('click', () => {
+    this.dom.nextBtn.addEventListener("click", () => {
       this.nextPage();
     });
 
-    this.dom.firstBtn.addEventListener('click', () => {
+    this.dom.firstBtn.addEventListener("click", () => {
       this.firstPage();
     });
 
-    this.dom.lastBtn.addEventListener('click', () => {
+    this.dom.lastBtn.addEventListener("click", () => {
       this.lastPage();
     });
 
@@ -52,15 +52,15 @@ export default class UI {
    * Get all elements with IDs and convert to camelCase object
    */
   getElementsWithIds(root) {
-    const elements = root.querySelectorAll('[id]');
+    const elements = root.querySelectorAll("[id]");
     return Array.from(elements).reduce((obj, element) => {
       const name = element.id
-        .split('-')
+        .split("-")
         .map((part, index) => {
           if (index === 0) return part;
           return part.charAt(0).toUpperCase() + part.slice(1);
         })
-        .join('');
+        .join("");
       obj[name] = element;
       return obj;
     }, {});
@@ -74,14 +74,14 @@ export default class UI {
     const startYear = 1901;
 
     // Add 'All' option first
-    const allOption = document.createElement('option');
-    allOption.value = 'all';
-    allOption.textContent = 'All';
+    const allOption = document.createElement("option");
+    allOption.value = "all";
+    allOption.textContent = "All";
     this.dom.yearSelect.appendChild(allOption);
 
     // Add years in descending order (newest first)
     for (let year = currentYear; year >= startYear; year--) {
-      const option = document.createElement('option');
+      const option = document.createElement("option");
       option.value = year;
       option.textContent = year;
       this.dom.yearSelect.appendChild(option);
@@ -93,8 +93,8 @@ export default class UI {
    */
   loadInitialData() {
     // Set the initial year to 'all' in dropdown
-    this.dom.yearSelect.value = 'all';
-    this.state.filters.year = 'all';
+    this.dom.yearSelect.value = "all";
+    this.state.filters.year = "all";
 
     // Load prizes for all years
     this.loadPrizes();
@@ -139,10 +139,10 @@ export default class UI {
         this.hideLoading();
       },
       (error) => {
-        console.error('Error loading prizes:', error);
-        this.showError('Failed to load Nobel Prizes. Please try again.');
+        console.error("Error loading prizes:", error);
+        this.showError("Failed to load Nobel Prizes. Please try again.");
         this.hideLoading();
-      }
+      },
     );
   }
 
@@ -151,7 +151,7 @@ export default class UI {
    */
   renderPrizes() {
     const container = this.dom.prizesContainer;
-    container.innerHTML = '';
+    container.innerHTML = "";
 
     if (this.state.prizes.length === 0) {
       container.innerHTML =
@@ -169,36 +169,36 @@ export default class UI {
    * Create a prize card element
    */
   createPrizeCard(prize) {
-    const card = document.createElement('div');
+    const card = document.createElement("div");
     const categoryCode = prize.categoryFullName?.en
       ? this.getCategoryCode(prize.categoryFullName.en)
-      : 'phy';
+      : "phy";
     card.className = `prize-card ${categoryCode}`;
 
     // Create header
-    const header = document.createElement('div');
-    header.className = 'prize-header';
+    const header = document.createElement("div");
+    header.className = "prize-header";
 
-    const yearElement = document.createElement('div');
-    yearElement.className = 'prize-year';
-    yearElement.textContent = prize.awardYear || 'N/A';
+    const yearElement = document.createElement("div");
+    yearElement.className = "prize-year";
+    yearElement.textContent = prize.awardYear || "N/A";
 
-    const categoryElement = document.createElement('div');
+    const categoryElement = document.createElement("div");
     categoryElement.className = `prize-category ${categoryCode}`;
     categoryElement.textContent = this.formatCategory(
-      prize.categoryFullName?.en || 'Unknown'
+      prize.categoryFullName?.en || "Unknown",
     );
 
     header.appendChild(yearElement);
     header.appendChild(categoryElement);
 
     // Create laureates section
-    const laureatesSection = document.createElement('div');
-    laureatesSection.className = 'laureates-section';
+    const laureatesSection = document.createElement("div");
+    laureatesSection.className = "laureates-section";
 
-    const laureatesTitle = document.createElement('div');
-    laureatesTitle.className = 'laureates-title';
-    laureatesTitle.textContent = 'Laureate(s):';
+    const laureatesTitle = document.createElement("div");
+    laureatesTitle.className = "laureates-title";
+    laureatesTitle.textContent = "Laureate(s):";
 
     laureatesSection.appendChild(laureatesTitle);
 
@@ -209,9 +209,9 @@ export default class UI {
         laureatesSection.appendChild(laureateItem);
       });
     } else {
-      const noLaureate = document.createElement('div');
-      noLaureate.className = 'laureate-item';
-      noLaureate.textContent = 'No laureates information available';
+      const noLaureate = document.createElement("div");
+      noLaureate.className = "laureate-item";
+      noLaureate.textContent = "No laureates information available";
       laureatesSection.appendChild(noLaureate);
     }
 
@@ -225,30 +225,30 @@ export default class UI {
    * Create a laureate item element
    */
   createLaureateItem(laureate) {
-    const item = document.createElement('div');
-    item.className = 'laureate-item';
+    const item = document.createElement("div");
+    item.className = "laureate-item";
 
-    const nameElement = document.createElement('div');
-    nameElement.className = 'laureate-name';
+    const nameElement = document.createElement("div");
+    nameElement.className = "laureate-name";
 
     // Handle both individual and organization laureates
     if (laureate.knownName) {
-      nameElement.textContent = laureate.knownName.en || 'Unknown';
+      nameElement.textContent = laureate.knownName.en || "Unknown";
     } else if (laureate.orgName) {
-      nameElement.textContent = laureate.orgName.en || 'Unknown Organization';
+      nameElement.textContent = laureate.orgName.en || "Unknown Organization";
     } else if (laureate.fullName) {
-      nameElement.textContent = laureate.fullName.en || 'Unknown';
+      nameElement.textContent = laureate.fullName.en || "Unknown";
     } else {
-      nameElement.textContent = 'Unknown';
+      nameElement.textContent = "Unknown";
     }
 
     item.appendChild(nameElement);
 
     // Add motivation if available
     if (laureate.motivation) {
-      const motivationElement = document.createElement('div');
-      motivationElement.className = 'laureate-motivation';
-      motivationElement.textContent = laureate.motivation.en || '';
+      const motivationElement = document.createElement("div");
+      motivationElement.className = "laureate-motivation";
+      motivationElement.textContent = laureate.motivation.en || "";
       item.appendChild(motivationElement);
     }
 
@@ -260,14 +260,14 @@ export default class UI {
    */
   getCategoryCode(categoryName) {
     const mapping = {
-      Physics: 'phy',
-      Chemistry: 'che',
-      'Physiology or Medicine': 'med',
-      Literature: 'lit',
-      Peace: 'pea',
-      'Economic Sciences': 'eco',
+      Physics: "phy",
+      Chemistry: "che",
+      "Physiology or Medicine": "med",
+      Literature: "lit",
+      Peace: "pea",
+      "Economic Sciences": "eco",
     };
-    return mapping[categoryName] || 'phy';
+    return mapping[categoryName] || "phy";
   }
 
   /**
@@ -275,8 +275,8 @@ export default class UI {
    */
   formatCategory(categoryName) {
     return categoryName
-      .replace('The Nobel Prize in ', '')
-      .replace('Physiology or ', '');
+      .replace("The Nobel Prize in ", "")
+      .replace("Physiology or ", "");
   }
 
   /**
@@ -284,7 +284,7 @@ export default class UI {
    */
   updatePagination() {
     const totalPages = Math.ceil(
-      this.state.totalPrizes / this.state.itemsPerPage
+      this.state.totalPrizes / this.state.itemsPerPage,
     );
     const normalizedTotalPages = Math.max(totalPages, 1);
 
@@ -303,7 +303,7 @@ export default class UI {
    */
   updatePrizesInfo() {
     const count = this.state.totalPrizes;
-    const plural = count !== 1 ? 'prizes' : 'prize';
+    const plural = count !== 1 ? "prizes" : "prize";
     this.dom.prizesCount.textContent = `${count} ${plural} found`;
   }
 
@@ -313,7 +313,7 @@ export default class UI {
   async previousPage() {
     if (this.state.currentPage > 1) {
       await this.loadPrizes(this.state.currentPage - 1);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   }
 
@@ -323,7 +323,7 @@ export default class UI {
   async firstPage() {
     if (this.state.currentPage !== 1) {
       await this.loadPrizes(1);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   }
 
@@ -332,12 +332,12 @@ export default class UI {
    */
   async nextPage() {
     const totalPages = Math.ceil(
-      this.state.totalPrizes / this.state.itemsPerPage
+      this.state.totalPrizes / this.state.itemsPerPage,
     );
     const normalizedTotalPages = Math.max(totalPages, 1);
     if (this.state.currentPage < normalizedTotalPages) {
       await this.loadPrizes(this.state.currentPage + 1);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   }
 
@@ -346,12 +346,12 @@ export default class UI {
    */
   async lastPage() {
     const totalPages = Math.ceil(
-      this.state.totalPrizes / this.state.itemsPerPage
+      this.state.totalPrizes / this.state.itemsPerPage,
     );
     const normalizedTotalPages = Math.max(totalPages, 1);
     if (this.state.currentPage < normalizedTotalPages) {
       await this.loadPrizes(normalizedTotalPages);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   }
 
@@ -359,15 +359,15 @@ export default class UI {
    * Show loading indicator
    */
   showLoading() {
-    this.dom.loading.classList.add('active');
-    this.dom.errorMessage.classList.remove('active');
+    this.dom.loading.classList.add("active");
+    this.dom.errorMessage.classList.remove("active");
   }
 
   /**
    * Hide loading indicator
    */
   hideLoading() {
-    this.dom.loading.classList.remove('active');
+    this.dom.loading.classList.remove("active");
   }
 
   /**
@@ -376,7 +376,7 @@ export default class UI {
   showError(message) {
     const errorElement = this.dom.errorMessage;
     errorElement.textContent = message;
-    errorElement.classList.add('active');
+    errorElement.classList.add("active");
     this.hideLoading();
   }
 }

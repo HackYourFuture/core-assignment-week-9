@@ -21,9 +21,9 @@ The only endpoint we will use is `GET /nobelPrizes`. The pre-made application fe
 The provided `services.js` file that you need to complete looks like this:
 
 ```js
-import { fetchData } from './fetcher.js';
+import { fetchData } from "./fetcher.js";
 
-const API_BASE_URL = 'https://api.nobelprize.org/2.1';
+const API_BASE_URL = "https://api.nobelprize.org/2.1";
 
 /**
  * Fetch Nobel Prizes with optional filters
@@ -36,7 +36,7 @@ const API_BASE_URL = 'https://api.nobelprize.org/2.1';
  * @param {Function} onError - Callback for fetch errors
  */
 export function fetchNobelPrizes(filters = {}, onSuccess, onError) {
-  let url = ''; // TODO Construct the full URL with query parameters;
+  let url = ""; // TODO Construct the full URL with query parameters;
 
   fetchData(url, onSuccess, onError);
 }
@@ -52,12 +52,12 @@ Internally, the `fetchNobelPrizes()` function calls the imported `fetchData()` f
 
 For this exercise, you can consider the `fetchData()` function as a _black box_, i.e. you do not need to consider how it is implemented. The only thing you need to know is how to call it. In fact, the only thing that you need to do is to construct the full url that is needed to fetch the data given the filter values passed in the `filters` object. It may contain the following properties:
 
-| **Field**                   | **Value**                                                                                                                           |
-| --------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| year (string)               | The Nobel Prize year, or `"all"` if no year filter is selected.                                                                     |
-| category (string)           | The Nobel Prize category, or `"all"` if no category filter is selected.                                                             |
-| offset (number)             | An offset that indicates from which location in the list the current page starts. This offset is managed by the pagination buttons. |
-| limit (number)              | The number of items per page. This is a fixed number, set by the Web UI.                                                            |
+| **Field**         | **Value**                                                                                                                           |
+| ----------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| year (string)     | The Nobel Prize year, or `"all"` if no year filter is selected.                                                                     |
+| category (string) | The Nobel Prize category, or `"all"` if no category filter is selected.                                                             |
+| offset (number)   | An offset that indicates from which location in the list the current page starts. This offset is managed by the pagination buttons. |
+| limit (number)    | The number of items per page. This is a fixed number, set by the Web UI.                                                            |
 
 ### Requirements
 

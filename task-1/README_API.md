@@ -6,11 +6,11 @@ This guide describes the users API backed by the local users.json file. It expla
 
 1. Install dependencies (run this once from the repository root):
 
-       npm install
+   npm install
 
 2. Start the server:
 
-       npm start
+   npm start
 
 The server runs at <http://localhost:3000>. Keep it running in a separate terminal while you work on your scripts.
 

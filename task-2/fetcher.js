@@ -20,7 +20,7 @@ export function fetchData(url, onSuccess, onError) {
     })
     .catch((error) => {
       if (onError) {
-        console.log('Error fetching data:', error);
+        console.log("Error fetching data:", error);
         onError(error);
       }
     });

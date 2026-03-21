@@ -1,4 +1,4 @@
-import UI from './ui.js';
+import UI from "./ui.js";
 
 /**
  * Main function to initialize the Nobel Prize Explorer application
@@ -8,4 +8,4 @@ function main() {
   ui.initialize();
 }
 
-window.addEventListener('load', main);
+window.addEventListener("load", main);

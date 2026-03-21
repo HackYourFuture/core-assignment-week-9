@@ -1,23 +1,23 @@
-import bcrypt from 'bcrypt';
-import express from 'express';
-import fs from 'fs';
-import morgan from 'morgan';
-import { dirname, join } from 'path';
-import { fileURLToPath } from 'url';
-import chalk from 'chalk';
+import bcrypt from "bcrypt";
+import express from "express";
+import fs from "fs";
+import morgan from "morgan";
+import { dirname, join } from "path";
+import { fileURLToPath } from "url";
+import chalk from "chalk";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const app = express();
 const PORT = 3000;
-const usersFilePath = join(__dirname, 'users.json');
+const usersFilePath = join(__dirname, "users.json");
 
-app.use(morgan('dev'));
+app.use(morgan("dev"));
 app.use(express.json());
 
 // Set global JSON indentation to 2 spaces
-app.set('json spaces', 2);
+app.set("json spaces", 2);
 
 // Helper function to read users from the JSON file
 const readUsers = () => {
@@ -31,16 +31,16 @@ const writeUsers = (users) => {
 };
 
 // GET all users
-app.get('/users', (req, res) => {
+app.get("/users", (req, res) => {
   const users = readUsers().map(({ password, ...user }) => user); // Exclude password
   res.json(users);
 });
 
 // GET a user by ID
-app.get('/users/:id', (req, res) => {
+app.get("/users/:id", (req, res) => {
   const id = parseInt(req.params.id);
   if (isNaN(id) || id < 1) {
-    return res.status(400).send('Invalid user ID');
+    return res.status(400).send("Invalid user ID");
   }
 
   const users = readUsers();
@@ -49,20 +49,22 @@ app.get('/users/:id', (req, res) => {
     const { password, ...userWithoutPassword } = user; // Exclude password
     res.json(userWithoutPassword);
   } else {
-    res.status(404).send('User not found');
+    res.status(404).send("User not found");
   }
 });
 
 // CREATE a new user
-app.post('/users', async (req, res) => {
+app.post("/users", async (req, res) => {
   const { name, email, password, role, department } = req.body;
 
   const missing = [];
-  if (!name || typeof name !== 'string') missing.push('name');
-  if (!email || typeof email !== 'string') missing.push('email');
-  if (!password || typeof password !== 'string') missing.push('password');
+  if (!name || typeof name !== "string") missing.push("name");
+  if (!email || typeof email !== "string") missing.push("email");
+  if (!password || typeof password !== "string") missing.push("password");
   if (missing.length > 0) {
-    return res.status(400).send(`Missing required fields: ${missing.join(', ')}`);
+    return res
+      .status(400)
+      .send(`Missing required fields: ${missing.join(", ")}`);
   }
 
   const hashedPassword = await bcrypt.hash(password, 10);
@@ -85,18 +87,20 @@ app.post('/users', async (req, res) => {
 });
 
 // UPDATE a user by ID
-app.put('/users/:id', async (req, res) => {
+app.put("/users/:id", async (req, res) => {
   const id = parseInt(req.params.id);
   if (isNaN(id) || id < 1) {
-    return res.status(400).send('Invalid user ID');
+    return res.status(400).send("Invalid user ID");
   }
 
   const { name, email } = req.body;
   const missing = [];
-  if (!name || typeof name !== 'string') missing.push('name');
-  if (!email || typeof email !== 'string') missing.push('email');
+  if (!name || typeof name !== "string") missing.push("name");
+  if (!email || typeof email !== "string") missing.push("email");
   if (missing.length > 0) {
-    return res.status(400).send(`Missing required fields: ${missing.join(', ')}`);
+    return res
+      .status(400)
+      .send(`Missing required fields: ${missing.join(", ")}`);
   }
 
   const users = readUsers();
@@ -116,20 +120,20 @@ app.put('/users/:id', async (req, res) => {
     const { password: _, ...userWithoutPassword } = updatedUser;
     res.json(userWithoutPassword);
   } else {
-    res.status(404).send('User not found');
+    res.status(404).send("User not found");
   }
 });
 
 // PATCH a user by ID (partial update)
-app.patch('/users/:id', async (req, res) => {
+app.patch("/users/:id", async (req, res) => {
   const id = parseInt(req.params.id);
   if (isNaN(id) || id < 1) {
-    return res.status(400).send('Invalid user ID');
+    return res.status(400).send("Invalid user ID");
   }
 
   const { id: _id, createdAt: _createdAt, ...updateFields } = req.body;
   if (Object.keys(updateFields).length === 0) {
-    return res.status(400).send('No valid update fields provided');
+    return res.status(400).send("No valid update fields provided");
   }
 
   const users = readUsers();
@@ -148,15 +152,15 @@ app.patch('/users/:id', async (req, res) => {
     const { password: _, ...userWithoutPassword } = updatedUser;
     res.json(userWithoutPassword);
   } else {
-    res.status(404).send('User not found');
+    res.status(404).send("User not found");
   }
 });
 
 // DELETE a user by ID
-app.delete('/users/:id', (req, res) => {
+app.delete("/users/:id", (req, res) => {
   const id = parseInt(req.params.id);
   if (isNaN(id) || id < 1) {
-    return res.status(400).send('Invalid user ID');
+    return res.status(400).send("Invalid user ID");
   }
 
   const users = readUsers();
@@ -168,13 +172,13 @@ app.delete('/users/:id', (req, res) => {
     // typically a 204 No Content is used for successful deletions without
     // a response body.
     // res.status(204).send();
-    res.status(200).send('User deleted successfully');
+    res.status(200).send("User deleted successfully");
   } else {
-    res.status(404).send('User not found');
+    res.status(404).send("User not found");
   }
 });
 
 app.listen(PORT, () => {
   console.log(chalk.green(`Server is running on http://localhost:${PORT}`));
-  console.log(chalk.yellow('Press Ctrl+C to stop the server'));
+  console.log(chalk.yellow("Press Ctrl+C to stop the server"));
 });
